@@ -43,6 +43,13 @@
       "email": "sewen@gmail.com",
       "password": "sewen",
       "mobile": 9000000000000
+    },
+    {
+      "id": "0ae8",
+      "fullname": "Abadom Emeka",
+      "email": "abadomemek@gmail.com",
+      "password": "abadom",
+      "mobile": "09088877666"
     }
   ]
 }

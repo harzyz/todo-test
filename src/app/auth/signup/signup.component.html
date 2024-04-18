@@ -1,4 +1,4 @@
-<div class="container mx-auto">
+<!-- <div class="container mx-auto">
     <div class="flex justify-center">
         <div class="max-w-md bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 shadow-md rounded-lg overflow-hidden">
             <div class="text-center py-6">
@@ -28,4 +28,41 @@
             <a style="color: #000; margin-top: 10px;" routerLink="/login" class="block text-center bg-white hover:bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded-md transition duration-300 ease-in-out">Already have an account? click here to Login</a>
         </div>
     </div>
-</div>
+</div> -->
+
+
+<div class="wrapper">
+    <form [formGroup]="signupForm" (ngSubmit)="buttonFunc()" class="container">
+      <input
+        type="text"
+        placeholder="Full Name"
+        id="exampleInputfullname"
+        formControlName="fullname"
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+      />
+      <input
+        type="text"
+        placeholder="Mobile Number"
+        formControlName="mobile"
+        id="exampleInputmobilenumber" 
+      />
+      <div class="passwordinput">
+        <input
+          type="text"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </div>
+      <button type="submit">Sign up</button>
+      <p>
+        Already have an account?
+        <a class='link' href="/login">
+          Log in
+        </a>
+      </p>
+    </form>
+  </div>
