@@ -1,11 +1,6 @@
 {
   "todos": [
     {
-      "id": "2",
-      "title": "Build a Todo App",
-      "completed": false
-    },
-    {
       "id": 1713447941062,
       "title": "gggggg",
       "completed": false
@@ -19,6 +14,35 @@
       "id": 1713448165191,
       "title": "gggg",
       "completed": false
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "user1",
+      "password": "password1",
+      "todos": []
+    },
+    {
+      "id": "2",
+      "username": "user2",
+      "password": "password2",
+      "todos": []
+    },
+    {
+      "id": "80a5",
+      "fullname": "Chukwuemeka Godseed",
+      "email": "godseedchukwuemeka@gmail.com",
+      "password": "12345",
+      "mobile": 7066431203,
+      "todos": []
+    },
+    {
+      "id": "dbef",
+      "fullname": "Abdul-Azeez demilade",
+      "email": "sewen@gmail.com",
+      "password": "sewen",
+      "mobile": 9000000000000
     }
   ]
 }

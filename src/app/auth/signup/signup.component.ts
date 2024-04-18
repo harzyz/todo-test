@@ -75,7 +75,7 @@ buttonFunc() {
     console.log('this.signupForm.value', this.signupForm.value);
     console.log(this.editedUser.id)
     this.http
-      .put<any>(`http://localhost:3000/users/${this.editedUser.id}`, this.signupForm.value)
+      .put<any>(`http://localhost:4000/users/${this.editedUser.id}`, this.signupForm.value)
       .subscribe(
         (res) => {
           debugger;

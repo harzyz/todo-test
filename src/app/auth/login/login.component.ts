@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit{
         localStorage.setItem('user',JSON.stringify(user))
         alert("Login success!!");
         this.loginForm.reset();
-        this.router.navigate(['todo'])
+        this.router.navigate(['dashboard'])
       }else{
         alert("user not found!!");
       }
