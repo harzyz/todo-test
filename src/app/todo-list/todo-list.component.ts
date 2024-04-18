@@ -9,6 +9,7 @@ import { TodoService } from '../todo.service';
 })
 export class TodoListComponent implements OnInit {
   todos: Todo[] = [];
+  selectedTodo: any | null = null;
 
   constructor(private todoService: TodoService) { }
 
@@ -29,20 +30,28 @@ export class TodoListComponent implements OnInit {
     this.todos[i].completed
   }
 
-  // deleteTodo(todo: Todo) {
-  //   console.log(todo)
-  //   console.log(this.todos)
-  //   this.todoService.deleteTodo(todo).subscribe(() => {
-  //     // this.todos.slice(id, 1)
-  //   });
-  //   this.ngOnInit()
-  // }
+  deleteTodo(id: number, i: number) {
+    console.log(id)
+    console.log(this.todos)
+    this.todoService.deleteTodo(id).subscribe(() => {
+      if(this.todos.length === 1){
+        this.todos.splice(i, 1)
+
+      }else{
+        this.todos.slice(i, 1)
+      }
+    });
+  }
 
   updateTodo(updatedTodo: Todo): void {
     this.todoService.updateTodo(updatedTodo).subscribe(() => {
       this.todos = this.todos.map(todo =>
         todo.id === updatedTodo.id ? updatedTodo : todo
       );
+      this.selectedTodo = null;
     });
+  }
+  editTodo(todo: Todo): void {
+    this.selectedTodo = { ...todo };
   }
 }

@@ -8,8 +8,17 @@ import { Todo } from './todo.model';
 })
 export class TodoService {
   private apiUrl = 'http://localhost:3000/todos';
+  private todos: any[] = [];
 
   constructor(private http: HttpClient) { }
+
+  getStateTodos(): any[] {
+    return this.todos;
+  }
+
+  setTodos(todo: any): void {
+    this.todos.push(todo);
+  }
 
   getTodos(): Observable<Todo[]> {
     return this.http.get<Todo[]>(this.apiUrl);

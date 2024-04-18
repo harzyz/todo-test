@@ -27,32 +27,19 @@ export class TodoFormComponent implements OnInit {
 
 
   saveTodo() {
-    if(this.newTodo){
-      const todo: Todo = {
-        id: Date.now(),
+    if (this.newTodo) {
+      const todo: any = {
         title: this.newTodo,
-        completed: false
-      }
-      this.todoService.addTodo(todo).subscribe(newTodo => {
+        completed: false,
+      };
+      this.todoService.addTodo(todo).subscribe((newTodo) => {
         this.todos.push(newTodo);
       });
-      this.newTodo = ''
-    }else{
-      alert('Please Enter Todo')
+      this.newTodo = '';
+    } else {
+      alert('Please Enter Todo');
     }
   }
 
-  // onSubmit(): void {
-  //   if (this.todoForm.valid) {
-  //     const todo: Todo = {
-  //       id: Date.now(),
-  //       title: this.todoForm.value.title,
-  //       completed: false
-  //     };
-  //     this.todoService.addTodo(todo).subscribe(newTodo => {
-  //       this.todos.push(newTodo);
-  //     });
-  //     this.todoForm.reset();
-  //   }
-  // }
+ 
 }
