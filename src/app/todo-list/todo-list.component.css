@@ -53,6 +53,15 @@
   border-radius: 4px;
   cursor: pointer;
 }
+.doneBtn {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  background-color: green;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
 .todo-item .actions button:hover {
   background-color: #0056b3;

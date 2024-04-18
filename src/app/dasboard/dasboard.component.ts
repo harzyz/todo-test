@@ -11,6 +11,7 @@ export class DasboardComponent {
   todos: any[] = [];
   newTodo: string = '' 
   nextId: number = 1;
+  selectedTodo: any | null = null;
 
 
   constructor(private todoService: TodoService) {
@@ -53,11 +54,15 @@ export class DasboardComponent {
   deleteTodo(id: number, i: number) {
     console.log(id)
     console.log(this.todos)
-    this.todos.slice(i, 1)
-    // debugger
     this.todoService.deleteTodo(id).subscribe(() => {
+      if(this.todos.length === 1){
+        this.todos.splice(i, 1)
+
+      }else{
+        this.todos.slice(i, 1)
+      }
     });
-    this.ngOnInit()
+    // this.ngOnInit()
   }
 
   updateTodo(updatedTodo: Todo): void {
@@ -65,7 +70,14 @@ export class DasboardComponent {
       this.todos = this.todos.map(todo =>
         todo.id === updatedTodo.id ? updatedTodo : todo
       );
+      // Set the selectedTodo to null after updating
+      this.selectedTodo = null;
     });
+  }
+  
+  // Add a new method to set the selectedTodo when the "Edit" button is clicked
+  editTodo(todo: Todo): void {
+    this.selectedTodo = { ...todo }; // Create a copy of the todo to avoid modifying the original
   }
 
 

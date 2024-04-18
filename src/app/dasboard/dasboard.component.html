@@ -7,12 +7,16 @@
     <li class="todo-item" *ngFor="let todo of todos let i = index ">
       <span [ngClass]="todo.completed ? 'doned' : 'title'">{{ todo.title }}</span>
       <div class="actions">
-        <button *ngIf='!todo.completed' class='deleteBtn' (click)="done(i)">Done</button>
+        <button *ngIf='!todo.completed' class='doneBtn' (click)="done(i)">Done</button>
         <button class='deleteBtn' (click)="deleteTodo(todo.id, i)">Delete</button>
-        <button class="edit" (click)="updateTodo(todo)">Edit</button>
+        <button class="edit" (click)="editTodo(todo)">Edit</button>
       </div>
     </li>
   </ul>
+  <div class="edit_todo" *ngIf="selectedTodo">
+    <input class="saveInput" [(ngModel)]="selectedTodo.title" type="text">
+    <button class='doneBtn' (click)="updateTodo(selectedTodo)">Save</button>
+  </div>
 </div>
 <!-- <app-todo-form></app-todo-form>
 <app-todo-list></app-todo-list> -->
