@@ -2,5 +2,6 @@
   <li *ngFor="let todo of todos">
     {{ todo.title }}
     <button (click)="deleteTodo(todo.id)">Delete</button>
+    <button (click)="updateTodo(todo)">Edit</button>
   </li>
 </ul>
