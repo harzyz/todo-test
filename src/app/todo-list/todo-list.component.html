@@ -1,7 +1,9 @@
-<ul>
-  <li *ngFor="let todo of todos">
+<ul class="todo-list">
+  <li class="todo-item" *ngFor="let todo of todos">
     {{ todo.title }}
-    <button (click)="deleteTodo(todo.id)">Delete</button>
-    <button (click)="updateTodo(todo)">Edit</button>
+    <div class="actions">
+      <button class='deleteBtn' (click)="deleteTodo(todo.id)">Delete</button>
+      <button class="edit" (click)="updateTodo(todo)">Edit</button>
+    </div>
   </li>
 </ul>
