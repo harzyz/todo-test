@@ -59,7 +59,7 @@ buttonFunc() {
 
   signUp(){
     console.log("this.signupForm.value",this.signupForm.value)
-    this.http.post<any>("http://localhost:4000/users", this.signupForm.value)
+    this.http.post<any>("http://localhost:3000/users", this.signupForm.value)
     .subscribe(res=>{
       debugger
       alert("Signup successfully");

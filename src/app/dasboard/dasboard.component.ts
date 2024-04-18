@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Todo } from '../todo.model';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-dasboard',
@@ -7,18 +8,65 @@ import { Todo } from '../todo.model';
   styleUrls: ['./dasboard.component.css']
 })
 export class DasboardComponent {
-  todos: Todo[] = [];
+  todos: any[] = [];
+  newTodo: string = '' 
+  nextId: number = 1;
 
-  addTodo(todo: Todo): void {
-    this.todos.push(todo);
+
+  constructor(private todoService: TodoService) {
+
   }
 
-  // deleteTodo(id: number): void {
-  //   this.todos = this.todos.filter(todo => todo.id !== id);
-  // }
-
-  deleteTodo(event: Event): void {
-    const id = (event.target as HTMLElement).id;
-    this.todos = this.todos.filter(todo => todo.id !== +id);
+  ngOnInit(): void {
+    this.gettodos()
   }
+
+
+  saveTodo() {
+    if(this.newTodo){
+      const todo: any = {
+        title: this.newTodo,
+        completed: false
+      };
+      this.todoService.addTodo(todo).subscribe(newTodo => {
+        this.todos.push(newTodo);
+      });
+      this.newTodo = '';
+      this.nextId++; // Increment the nextId for the next todo
+    } else {
+      alert('Please Enter Todo');
+    }
+  }
+  
+
+  done(i : number) {
+    this.todos[i].completed = true
+  }
+
+  gettodos(){
+    this.todoService.getTodos().subscribe(todo => {
+      this.todos = todo;
+      console.log(this.todos, 'jjjj')
+    });
+  }
+
+  deleteTodo(id: number, i: number) {
+    console.log(id)
+    console.log(this.todos)
+    this.todos.slice(i, 1)
+    // debugger
+    this.todoService.deleteTodo(id).subscribe(() => {
+    });
+    this.ngOnInit()
+  }
+
+  updateTodo(updatedTodo: Todo): void {
+    this.todoService.updateTodo(updatedTodo).subscribe(() => {
+      this.todos = this.todos.map(todo =>
+        todo.id === updatedTodo.id ? updatedTodo : todo
+      );
+    });
+  }
+
+
 }

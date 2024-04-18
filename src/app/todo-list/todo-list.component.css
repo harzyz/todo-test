@@ -24,6 +24,11 @@
   flex-grow: 1;
   margin-left: 10px;
 }
+.doned {
+  text-decoration: line-through;
+}
+
+
 
 .todo-item .actions {
   display: flex;

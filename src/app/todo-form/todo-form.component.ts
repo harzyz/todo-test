@@ -9,27 +9,50 @@ import { TodoService } from '../todo.service';
   styleUrls: ['./todo-form.component.css']
 })
 export class TodoFormComponent implements OnInit {
-  todoForm: FormGroup;
+  todos: Todo[] = [];
+  // todoForm: FormGroup;
+  newTodo: string = '' 
 
-  constructor(private fb: FormBuilder, private todoService: TodoService) {
-    this.todoForm = this.fb.group({
-      title: ['', Validators.required]
-    });
+  // constructor(private fb: FormBuilder, private todoService: TodoService) {
+  //   this.todoForm = this.fb.group({
+  //     title: ['', Validators.required]
+  //   });
+  // }
+  constructor(private todoService: TodoService) {
+
   }
 
   ngOnInit(): void {
   }
 
-  onSubmit(): void {
-    if (this.todoForm.valid) {
+
+  saveTodo() {
+    if(this.newTodo){
       const todo: Todo = {
         id: Date.now(),
-        title: this.todoForm.value.title,
+        title: this.newTodo,
         completed: false
-      };
+      }
       this.todoService.addTodo(todo).subscribe(newTodo => {
+        this.todos.push(newTodo);
       });
-      this.todoForm.reset();
+      this.newTodo = ''
+    }else{
+      alert('Please Enter Todo')
     }
   }
+
+  // onSubmit(): void {
+  //   if (this.todoForm.valid) {
+  //     const todo: Todo = {
+  //       id: Date.now(),
+  //       title: this.todoForm.value.title,
+  //       completed: false
+  //     };
+  //     this.todoService.addTodo(todo).subscribe(newTodo => {
+  //       this.todos.push(newTodo);
+  //     });
+  //     this.todoForm.reset();
+  //   }
+  // }
 }

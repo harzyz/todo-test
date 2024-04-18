@@ -13,10 +13,10 @@ export class TodoListComponent implements OnInit {
   constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
-    this.todoService.getTodos().subscribe(todos => {
-      this.todos = todos;
+    this.todoService.getTodos().subscribe(todo => {
+      this.todos = todo;
+      console.log(this.todos, 'jjjj')
     });
-    console.log(this.todos, 'jjjj')
   }
 
   addTodo(todo: Todo): void {
@@ -25,11 +25,18 @@ export class TodoListComponent implements OnInit {
     });
   }
 
-  deleteTodo(id: number): void {
-    this.todoService.deleteTodo(id).subscribe(() => {
-      this.todos = this.todos.filter(todo => todo.id !== id);
-    });
+  done(i : number) {
+    this.todos[i].completed
   }
+
+  // deleteTodo(todo: Todo) {
+  //   console.log(todo)
+  //   console.log(this.todos)
+  //   this.todoService.deleteTodo(todo).subscribe(() => {
+  //     // this.todos.slice(id, 1)
+  //   });
+  //   this.ngOnInit()
+  // }
 
   updateTodo(updatedTodo: Todo): void {
     this.todoService.updateTodo(updatedTodo).subscribe(() => {

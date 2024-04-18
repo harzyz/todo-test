@@ -7,7 +7,7 @@ import { Todo } from './todo.model';
   providedIn: 'root'
 })
 export class TodoService {
-  private apiUrl = 'http://localhost:4000/todos';
+  private apiUrl = 'http://localhost:3000/todos';
 
   constructor(private http: HttpClient) { }
 
@@ -20,7 +20,7 @@ export class TodoService {
   }
 
   deleteTodo(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+    return this.http.delete(`${this.apiUrl}/:${id}`);
   }
 
   updateTodo(updatedTodo: Todo): Observable<Todo> {

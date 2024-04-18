@@ -1,8 +1,9 @@
 <ul class="todo-list">
-  <li class="todo-item" *ngFor="let todo of todos">
-    {{ todo.title }}
+  <li class="todo-item" *ngFor="let todo of todos let i = index ">
+    <span [ngClass]="todo.completed ? 'doned' : 'title'">{{ todo.title }}</span>
     <div class="actions">
-      <button class='deleteBtn' (click)="deleteTodo(todo.id)">Delete</button>
+      <button class='deleteBtn' (click)="done(i)">Done</button>
+      <!-- <button class='deleteBtn' (click)="deleteTodo(todo)">Delete</button> -->
       <button class="edit" (click)="updateTodo(todo)">Edit</button>
     </div>
   </li>
