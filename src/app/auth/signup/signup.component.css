@@ -97,6 +97,7 @@
     height: 100%;
     padding-top: 30px;
     gap: 10px;
+    min-height: 100vh;
   }
   .TodoLogo{
     width: 100px;

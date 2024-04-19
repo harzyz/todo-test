@@ -45,6 +45,7 @@
 @media screen and (max-width: 320px){
   .contain{
     max-width: 100%;
+    min-height: 100vh;
     padding: 15px;
     height: 100%;
   }

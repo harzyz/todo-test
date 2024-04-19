@@ -12,9 +12,12 @@
       </li>
       <div *ngIf='todos.length === 0' class="todoListName">No Todo's Yet</div>
       <app-modal [isOpen]="deleteModalOpen" (isClose)="deleteModalToggle(false)">
-        <h1>Are you sure You want to Delete?</h1>
-        <div class="actions">
-          <button class='deleteBtn' (click)="deleteTodo(todo.id, i)">Delete</button>
+        <div class="modal_confirm">
+          <h1>Are you sure You want to Delete?</h1>
+          <div class="actions_modal">
+            <button class='deleteBtn' (click)="deleteTodo(todo.id, i)">Delete</button>
+            <button class='cancelBtn' (click)="cancel()">Cancel</button>
+          </div>
         </div>
       </app-modal>
     </div>

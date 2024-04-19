@@ -83,6 +83,7 @@
     gap: 15px;
   }
   .wrapper{
+    min-height: 100vh;
     height: 100%;
     gap: 10px;
     padding-top: 30px;

@@ -63,6 +63,10 @@ export class TodoListComponent implements OnInit {
     this.deleteModalOpen = open
   }
 
+  cancel(){
+    this.deleteModalOpen = false
+  }
+
 
   updateTodo(updatedTodo: Todo): void {
     this.todoService.updateTodo(updatedTodo).subscribe(() => {

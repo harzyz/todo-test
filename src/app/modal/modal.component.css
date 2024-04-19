@@ -15,18 +15,14 @@
   background-color: #FFF;
   border-radius: 8px;
   padding: 10px;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
 }
 .modal-wrapper::-webkit-scrollbar{
   display: none;
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 700px) {
   .mode{
     padding: 0;
-    width: 90%;
+    width: 80%;
     border-radius: 2px;
-    height: 500px;
   }
 }
