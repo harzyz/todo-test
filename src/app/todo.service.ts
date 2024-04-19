@@ -1,27 +1,38 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, timer } from 'rxjs';
 import { Todo } from './todo.model';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
   private apiUrl = 'http://localhost:3000/todos';
-  private todos: any[] = [];
+  // private todos: Todo[] = [];
 
-  constructor(private http: HttpClient) { }
+  private todosSubject = new BehaviorSubject<Todo[]>([]);
+  todos$: Observable<Todo[]> = this.todosSubject.asObservable();
 
-  getStateTodos(): any[] {
-    return this.todos;
+  constructor(private http: HttpClient) {
+    this.getTodos().subscribe(todos => {
+      this.todosSubject.next(todos);
+    });
   }
 
-  setTodos(todo: any): void {
-    this.todos.push(todo);
+  private updateTodos(todos: Todo[]): void {
+    this.todosSubject.next(todos);
   }
 
-  getTodos(): Observable<Todo[]> {
-    return this.http.get<Todo[]>(this.apiUrl);
+  // getStateTodos(): Todo[] {
+  //   return this.todos;
+  // }
+
+
+  getTodos(): Observable<any> {
+    return timer(0, 5000).pipe(
+      switchMap(() => this.http.get(this.apiUrl))
+    );
   }
 
   addTodo(todo: Todo): Observable<Todo> {
@@ -34,5 +45,25 @@ export class TodoService {
 
   updateTodo(updatedTodo: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}/${updatedTodo.id}`, updatedTodo);
+  }
+
+  addTodoToLocalState(todo: Todo): void {
+    const currentTodos = this.todosSubject.getValue();
+    const updatedTodos = [...currentTodos, todo];
+    this.updateTodos(updatedTodos);
+  }
+
+  deleteTodoFromLocalState(id: number): void {
+    const currentTodos = this.todosSubject.getValue();
+    const updatedTodos = currentTodos.filter(todo => todo.id !== id);
+    this.updateTodos(updatedTodos);
+  }
+
+  editTodoLocalState(updatedTodo: Todo): void {
+    const currentTodos = this.todosSubject.getValue();
+    const updatedTodos = currentTodos.map(todo =>
+      todo.id === updatedTodo.id ? updatedTodo : todo
+    );
+    this.updateTodos(updatedTodos);
   }
 }

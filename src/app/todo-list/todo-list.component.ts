@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Todo } from '../todo.model';
 import { TodoService } from '../todo.service';
 
@@ -8,49 +8,54 @@ import { TodoService } from '../todo.service';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent implements OnInit {
-  todos: Todo[] = [];
+  todos: Todo[]= [];
   selectedTodo: any | null = null;
 
   constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
-    this.todoService.getTodos().subscribe(todo => {
+    this.todoService.todos$.subscribe(todos => {
+      this.todos = todos;
+    });
+    this.gettodos()
+  }
+
+  gettodos() {
+    this.todoService.getTodos().subscribe((todo) => {
       this.todos = todo;
-      console.log(this.todos, 'jjjj')
     });
   }
 
-  addTodo(todo: Todo): void {
-    this.todoService.addTodo(todo).subscribe(newTodo => {
-      this.todos.push(newTodo);
+  done(i: number) {
+    const updatedTodo = { ...this.todos[i], completed: true };
+    this.todoService.updateTodo(updatedTodo).subscribe(() => {
+      this.todoService.editTodoLocalState(updatedTodo);
+      this.todos = this.todos.map((todo, index) =>
+        index === i ? updatedTodo : todo
+      );
     });
-  }
-
-  done(i : number) {
-    this.todos[i].completed
   }
 
   deleteTodo(id: number, i: number) {
-    console.log(id)
-    console.log(this.todos)
-    this.todoService.deleteTodo(id).subscribe(() => {
-      if(this.todos.length === 1){
-        this.todos.splice(i, 1)
-
-      }else{
-        this.todos.slice(i, 1)
-      }
-    });
+    if(window.confirm('Are you sure you want to DELETE Todo?')){
+      this.todoService.deleteTodo(id).subscribe(() => {
+        this.todoService.deleteTodoFromLocalState(id);
+        this.todos = this.todos.filter(todo => todo.id !== id);
+        alert('Todo deleted');
+      });
+    }
   }
 
   updateTodo(updatedTodo: Todo): void {
     this.todoService.updateTodo(updatedTodo).subscribe(() => {
+      this.todoService.editTodoLocalState(updatedTodo);
       this.todos = this.todos.map(todo =>
         todo.id === updatedTodo.id ? updatedTodo : todo
       );
       this.selectedTodo = null;
     });
   }
+
   editTodo(todo: Todo): void {
     this.selectedTodo = { ...todo };
   }

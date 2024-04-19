@@ -1,42 +1,27 @@
 {
   "todos": [
     {
-      "id": "7d15",
-      "title": "teraeee",
+      "id": "0e0a",
+      "title": "Buy Turkey",
+      "completed": false
+    },
+    {
+      "id": "a54e",
+      "title": "Buy Amala",
       "completed": true
     },
     {
-      "id": "011c",
-      "title": "go home",
-      "completed": true
+      "id": "2941",
+      "title": "Buy Sharwama",
+      "completed": false
     },
     {
-      "id": "c68e",
-      "title": "hellp",
-      "completed": true
+      "id": "7736",
+      "title": "Buy Chicken",
+      "completed": false
     }
   ],
   "users": [
-    {
-      "id": "1",
-      "username": "user1",
-      "password": "password1",
-      "todos": []
-    },
-    {
-      "id": "2",
-      "username": "user2",
-      "password": "password2",
-      "todos": []
-    },
-    {
-      "id": "80a5",
-      "fullname": "Chukwuemeka Godseed",
-      "email": "godseedchukwuemeka@gmail.com",
-      "password": "12345",
-      "mobile": 7066431203,
-      "todos": []
-    },
     {
       "id": "dbef",
       "fullname": "Abdul-Azeez demilade",
@@ -49,6 +34,13 @@
       "fullname": "Abadom Emeka",
       "email": "abadomemek@gmail.com",
       "password": "abadom",
+      "mobile": "09088877666"
+    },
+    {
+      "id": "22ad",
+      "fullname": "William Shakespare",
+      "email": "williamshake@gmail.com",
+      "password": "shakespare",
       "mobile": "09088877666"
     }
   ]

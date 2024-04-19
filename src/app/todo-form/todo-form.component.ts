@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Todo } from '../todo.model';
 import { TodoService } from '../todo.service';
 
@@ -9,15 +8,9 @@ import { TodoService } from '../todo.service';
   styleUrls: ['./todo-form.component.css']
 })
 export class TodoFormComponent implements OnInit {
-  todos: Todo[] = [];
-  // todoForm: FormGroup;
   newTodo: string = '' 
 
-  // constructor(private fb: FormBuilder, private todoService: TodoService) {
-  //   this.todoForm = this.fb.group({
-  //     title: ['', Validators.required]
-  //   });
-  // }
+  
   constructor(private todoService: TodoService) {
 
   }
@@ -32,8 +25,8 @@ export class TodoFormComponent implements OnInit {
         title: this.newTodo,
         completed: false,
       };
+      this.todoService.addTodoToLocalState(todo);
       this.todoService.addTodo(todo).subscribe((newTodo) => {
-        this.todos.push(newTodo);
       });
       this.newTodo = '';
     } else {

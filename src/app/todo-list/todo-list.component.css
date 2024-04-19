@@ -1,11 +1,16 @@
-.contain{
-  max-width: 800px;
-  margin: 0 auto;
-}
+
 
 .todo-list {
+  height: 300px;
   list-style-type: none;
   padding: 0;
+  overflow-y: scroll;
+}
+
+.edit_todo{
+  display: flex;
+  gap: 30px;
+  align-items: center;
 }
 
 .todo-item {
@@ -19,16 +24,32 @@
 .todo-item:last-child {
   border-bottom: none;
 }
-
+.todoListName{
+  font-size: 30px;
+  font-weight: 500;
+}
 .todo-item .title {
   flex-grow: 1;
   margin-left: 10px;
 }
 .doned {
   text-decoration: line-through;
+  margin-left: 10px;
 }
 
+.list_container{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
 
+.saveInput {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
 
 .todo-item .actions {
   display: flex;
