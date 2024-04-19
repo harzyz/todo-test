@@ -1,9 +1,15 @@
 <div class='contain'>
-  <h1 class="welcome">Welcome {{userName}}</h1>
-  <app-todo-form></app-todo-form>
-  <app-todo-list></app-todo-list>
-
-  <div class="logout_container">
-    <button (click)="logout()" class="deleteBtn">Logout</button>
+  <h1 class="welcome">Welcome <br /> {{userName}}</h1>
+  <div class="todo_app">
+    <div class="todo-form">
+      <app-todo-form></app-todo-form>
+    </div>
+    <div class="todo-list">
+      <app-todo-list></app-todo-list>
+    </div>
   </div>
+
+  <!-- <div class="logout_container">
+    <button (click)="logout()" class="deleteBtn">Logout</button>
+  </div> -->
 </div>
