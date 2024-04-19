@@ -23,6 +23,39 @@
   cursor: pointer;
 }
 
-.todo-form button:hover {
-  background-color: #0056b3;
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #FFF;
 }
+
+.deleteBtn {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  background-color: tomato;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.todo-item .title {
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.doned {
+  text-decoration: line-through;
+  margin-left: 10px;
+}
+@media screen and (max-width: 700px){
+  .todo-list{
+    display: none;
+  }
+}
+
+
+

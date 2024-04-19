@@ -1,26 +1,5 @@
 {
-  "todos": [
-    {
-      "id": "0e0a",
-      "title": "Buy Turkey",
-      "completed": false
-    },
-    {
-      "id": "a54e",
-      "title": "Buy Amala",
-      "completed": true
-    },
-    {
-      "id": "2941",
-      "title": "Buy Sharwama",
-      "completed": false
-    },
-    {
-      "id": "7736",
-      "title": "Buy Chicken",
-      "completed": false
-    }
-  ],
+  "todos": [],
   "users": [
     {
       "id": "dbef",
@@ -42,6 +21,13 @@
       "email": "williamshake@gmail.com",
       "password": "shakespare",
       "mobile": "09088877666"
+    },
+    {
+      "id": "b4d1",
+      "fullname": "Oyadeyi Hussein",
+      "email": "Oyadeyih@gmail.com",
+      "password": "556653",
+      "mobile": "08075577147"
     }
   ]
 }

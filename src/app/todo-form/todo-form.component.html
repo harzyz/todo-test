@@ -2,3 +2,11 @@
   <input [(ngModel)]='newTodo' name='todo' type="text" placeholder="Enter todo title">
   <button type="submit">Add Todo</button>
 </form>
+<ul class="todo-list">
+  <div *ngFor="let todo of todos let i = index;">
+    <li *ngIf='todo.completed' class="todo-item">
+      <span  [ngClass]="todo.completed ? 'doned' : 'title'">{{ todo.title }}</span>
+      <button class='deleteBtn' (click)="deleteTodo(todo.id, i)">Delete</button>
+    </li>
+  </div>
+</ul>

@@ -11,6 +11,9 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthComponent } from './auth/auth.component';
 import { DasboardComponent } from './dasboard/dasboard.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './navbar/navbar.component'
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
     SignupComponent,
     AuthComponent,
     DasboardComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,6 +32,8 @@ import { TodoListComponent } from './todo-list/todo-list.component';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
+    ModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent],

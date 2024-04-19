@@ -1,15 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Todo } from '../todo.model';
 import { TodoService } from '../todo.service';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css']
+  // imports: [ModalComponent],
+  styleUrls: ['./todo-list.component.css'],
 })
 export class TodoListComponent implements OnInit {
   todos: Todo[]= [];
   selectedTodo: any | null = null;
+  deleteModalOpen: boolean = false
 
   constructor(private todoService: TodoService) { }
 
@@ -37,14 +41,28 @@ export class TodoListComponent implements OnInit {
   }
 
   deleteTodo(id: number, i: number) {
-    if(window.confirm('Are you sure you want to DELETE Todo?')){
       this.todoService.deleteTodo(id).subscribe(() => {
         this.todoService.deleteTodoFromLocalState(id);
         this.todos = this.todos.filter(todo => todo.id !== id);
         alert('Todo deleted');
       });
-    }
+      this.deleteModalOpen = false
+    
   }
+
+  deleteConfirm(){
+    this.deleteModalOpen = true
+  }
+
+  // toggleLoginFace() {
+  //   this.loginshow = true;
+  //   this.emailonlyshow = false;
+  // }
+
+  deleteModalToggle(open: boolean) {
+    this.deleteModalOpen = open
+  }
+
 
   updateTodo(updatedTodo: Todo): void {
     this.todoService.updateTodo(updatedTodo).subscribe(() => {

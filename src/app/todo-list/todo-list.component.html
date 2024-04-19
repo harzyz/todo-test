@@ -1,17 +1,35 @@
 <div class="list_container">
   <h1 class="todoListName">Todo List</h1>
   <ul class="todo-list">
-    <li class="todo-item" *ngFor="let todo of todos let i = index ">
-      <span [ngClass]="todo.completed ? 'doned' : 'title'">{{ todo.title }}</span>
-      <div class="actions">
-        <button *ngIf='!todo.completed' class='doneBtn' (click)="done(i)">Done</button>
-        <button class='deleteBtn' (click)="deleteTodo(todo.id, i)">Delete</button>
-        <button *ngIf='!todo.completed' class="edit" (click)="editTodo(todo)">Edit</button>
-      </div>
-    </li>
+    <div *ngFor="let todo of todos let i = index;">
+      <li *ngIf='!todo.completed && todos.length > 0' class="todo-item" >
+        <span [ngClass]="todo.completed ? 'doned' : 'title'">{{ todo.title }}</span>
+        <div class="actions">
+          <button *ngIf='!todo.completed' class="edit" (click)="editTodo(todo)">Edit</button>
+          <button *ngIf='!todo.completed' class='doneBtn' (click)="done(i)">Done</button>
+          <button class='deleteBtn' (click)="deleteConfirm()">Delete</button>
+        </div>
+      </li>
+      <div *ngIf='todos.length === 0' class="todoListName">No Todo's Yet</div>
+      <app-modal [isOpen]="deleteModalOpen" (isClose)="deleteModalToggle(false)">
+        <h1>Are you sure You want to Delete?</h1>
+        <div class="actions">
+          <button class='deleteBtn' (click)="deleteTodo(todo.id, i)">Delete</button>
+        </div>
+      </app-modal>
+    </div>
   </ul>
   <div class="edit_todo" *ngIf="selectedTodo">
     <input class="saveInput" [(ngModel)]="selectedTodo.title" type="text">
     <button class='doneBtn' (click)="updateTodo(selectedTodo)">Save</button>
   </div>
+  <ul class="todo_list_done">
+    <div *ngFor="let todo of todos let i = index;">
+      <li *ngIf='todo.completed' class="todo-item">
+        <span  [ngClass]="todo.completed ? 'doned' : 'title'">{{ todo.title }}</span>
+        <button class='deleteBtn' (click)="deleteTodo(todo.id, i)">Delete</button>
+      </li>
+    </div>
+  </ul>
+  
 </div>

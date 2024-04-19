@@ -8,6 +8,7 @@ import { TodoService } from '../todo.service';
   styleUrls: ['./todo-form.component.css']
 })
 export class TodoFormComponent implements OnInit {
+  todos: Todo[] = [];
   newTodo: string = '' 
 
   
@@ -16,8 +17,17 @@ export class TodoFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.todoService.todos$.subscribe(todos => {
+      this.todos = todos;
+    });
+    this.gettodos()
   }
 
+  gettodos() {
+    this.todoService.getTodos().subscribe((todo) => {
+      this.todos = todo;
+    });
+  }
 
   saveTodo() {
     if (this.newTodo) {
@@ -31,6 +41,16 @@ export class TodoFormComponent implements OnInit {
       this.newTodo = '';
     } else {
       alert('Please Enter Todo');
+    }
+  }
+
+  deleteTodo(id: number, i: number) {
+    if(window.confirm('Are you sure you want to DELETE Todo?')){
+      this.todoService.deleteTodo(id).subscribe(() => {
+        this.todoService.deleteTodoFromLocalState(id);
+        this.todos = this.todos.filter(todo => todo.id !== id);
+        alert('Todo deleted');
+      });
     }
   }
 
