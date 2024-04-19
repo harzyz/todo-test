@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Todo } from '../todo.model';
-import { TodoService } from '../todo.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dasboard',
@@ -10,7 +9,7 @@ import { TodoService } from '../todo.service';
 export class DasboardComponent {
   userName = ''
 
-  constructor(private todoService: TodoService) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     const userString = localStorage.getItem('user');
@@ -18,6 +17,11 @@ export class DasboardComponent {
       const user = JSON.parse(userString);
       this.userName = user.fullname
     }
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigate(['']);
   }
 
   
