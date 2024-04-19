@@ -31,6 +31,15 @@
   display: flex;
   justify-content: end;
 }
+.deleteBtn {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  background-color: red;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 320px){
   .contain{
