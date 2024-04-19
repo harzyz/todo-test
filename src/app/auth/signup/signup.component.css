@@ -1,9 +1,23 @@
 .wrapper{
   width: 100%;
-  height: calc(100vh - 80px);
+  height: 100%;
+  padding-top: 30px;
   display: flex;
+  flex-direction: column;
+  gap: 30px;
   justify-content: center;
   align-items: center;
+}
+.logo{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+}
+.TodoLogo{
+  width: 100px;
+  height: 100px;
 }
 .container{
   width: 30%;
@@ -16,9 +30,11 @@
   width: 90%;
   padding: 20px 16px ;
   border: 2px solid grey;
+  height: 50px;
 }
 .passwordinput input{
   width: 100%;
+  
 }
 .passwordinput{
   width: 90%;
@@ -39,14 +55,53 @@
   color: #E5EBFA;
   font-size: 18px;
   font-family: 'Poppins';
+  /* height: 40px; */
 }
 .link{
   color: #070c27;
   font-weight: 700;
   text-decoration: none;
 }
+.welcome{
+  font-size: 40px;
+  font-weight: 500;
+  text-align: center;
+}
+.actions{
+  font-size: 30px;
+  font-weight: 500;
+  text-align: center;
+  color: #6AA3FF;
+  font-weight: 600;
+}
 @media screen and (max-width: 700px){
   .container{
     width: 90%;
+    gap: 15px;
+  }
+  .actions{
+    font-size: 25px;
+  }
+  .logo{
+    gap: 10px;
+  }
+  .wrapper{
+    height: 100%;
+    padding-top: 30px;
+    gap: 10px;
+  }
+  .TodoLogo{
+    width: 100px;
+    height: 100px;
+  }
+  .welcome{
+    font-size: 30px;
+  }
+  .container input{
+    height: 40px
+  }
+  .container button{
+    height: 40px;
+    padding: 0;
   }
 }

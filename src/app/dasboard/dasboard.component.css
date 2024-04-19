@@ -48,30 +48,9 @@
 
 
 
-.todo-list {
-  list-style-type: none;
-  padding: 0;
-}
 
-.todo-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
-}
 
-.todo-item:last-child {
-  border-bottom: none;
-}
 
-.todo-item .title {
-  flex-grow: 1;
-  margin-left: 10px;
-}
-.doned {
-  text-decoration: line-through;
-}
 
 
 

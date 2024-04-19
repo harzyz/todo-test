@@ -1,4 +1,10 @@
 <div class="wrapper">
+    <div class="logo">
+      <div class="TodoLogo">
+        <img src='../../../assets/images/todoImage.png' />
+      </div>
+    </div>
+    <h1 class="actions">Log In</h1>
     <form [formGroup]="loginForm" (ngSubmit)="login()" class="container">
       <input formControlName="email" type="email" placeholder="Email" id="email" aria-describedby="emailHelp" />
       <div class='passwordinput'>
