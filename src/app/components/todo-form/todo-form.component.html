@@ -2,8 +2,8 @@
   <input [(ngModel)]='newTodo' name='todo' type="text" placeholder="Enter todo title">
   <button type="submit"><i style="color: #fff; cursor: pointer;" class="material-icons">add</i> Add Todo</button>
 </form>
+<h1 class="todoListName">Completed List</h1>
 <ul class="todo-list">
-  <h1 class="todoListName">Completed List</h1>
   <div class='no_todos' *ngIf="todos.length == 0">No Completed Todo's yet</div>
   <div *ngFor="let todo of todos let i = index;">
     <li *ngIf='todo.completed' class="todo-item">

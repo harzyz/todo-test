@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Todo } from '../todo.model';
-import { TodoService } from '../todo.service';
+import { Todo } from '../../todo.model';
 import { ToastrService } from 'ngx-toastr';
-import { trigger, transition, style, animate } from '@angular/animations';
+import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -15,7 +14,10 @@ export class TodoListComponent implements OnInit {
   deleteModalOpen: boolean = false;
   editModalOpen: boolean = false;
 
-  constructor(private todoService: TodoService, private toastr: ToastrService) {}
+  constructor(
+    private todoService: TodoService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.todoService.todos$.subscribe((todos) => {
@@ -38,7 +40,7 @@ export class TodoListComponent implements OnInit {
         index === i ? updatedTodo : todo
       );
     });
-    this.toastr.success('Completed!')
+    this.toastr.success('Completed!');
   }
 
   deleteTodo(id: number, i: number) {
@@ -76,13 +78,13 @@ export class TodoListComponent implements OnInit {
         todo.id === updatedTodo.id ? updatedTodo : todo
       );
       this.selectedTodo = null;
-      this.editModalOpen = false
+      this.editModalOpen = false;
       this.toastr.success('Todo Saved');
     });
   }
 
   editTodo(todo: Todo): void {
     this.selectedTodo = { ...todo };
-    this.editConfirm()
+    this.editConfirm();
   }
 }

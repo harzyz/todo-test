@@ -91,6 +91,10 @@
   font-size: 20px;
   font-weight: 500;
 }
+/* .todo-list{
+  background-color: #45d367;
+  height: 250px;
+} */
 @media screen and (max-width: 700px) {
   .todo-list {
     display: none;

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, timer } from 'rxjs';
-import { Todo } from './todo.model';
+// import { Todo } from './todo.model';
 import { switchMap } from 'rxjs/operators';
+import { Todo } from '../todo.model';
 
 @Injectable({
   providedIn: 'root'

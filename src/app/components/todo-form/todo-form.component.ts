@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Todo } from '../todo.model';
-import { TodoService } from '../todo.service';
+import { Todo } from '../../todo.model';
 import { ToastrService } from 'ngx-toastr';
+import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
   selector: 'app-todo-form',

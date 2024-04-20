@@ -3,17 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TodoFormComponent } from './todo-form/todo-form.component';
+import { TodoFormComponent } from './components/todo-form/todo-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { AuthComponent } from './auth/auth.component';
-import { DasboardComponent } from './dasboard/dasboard.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
+import { LoginComponent } from './pages/auth/login/login.component';
+import { SignupComponent } from './pages/auth/signup/signup.component';
+import { AuthComponent } from './pages/auth/auth.component';
+import { DasboardComponent } from './pages/dasboard/dasboard.component';
+import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './navbar/navbar.component'
-import { ModalComponent } from './modal/modal.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ModalComponent } from './components/modal/modal.component';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -35,7 +35,7 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    ModalComponent
+    ModalComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
