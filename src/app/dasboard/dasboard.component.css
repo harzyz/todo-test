@@ -6,7 +6,7 @@
   flex-direction: column;
   gap: 20px;
   padding: 50px;
-  background-color: #dedcff;
+  background-color: #fff;
 }
 .todo_app{
   display: flex;
@@ -36,10 +36,35 @@
   padding: 5px 10px;
   font-size: 14px;
   border: none;
-  background-color: red;
+  background-color: #050315;
   color: white;
   border-radius: 4px;
   cursor: pointer;
+}
+.modal_confirm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 500;
+}
+.cancelBtn {
+  padding: 5px 10px;
+  font-size: 14px;
+  border: none;
+  background-color: grey;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.actions_modal{
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  justify-content: center;
 }
 
 @media screen and (max-width: 320px){

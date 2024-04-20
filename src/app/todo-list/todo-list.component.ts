@@ -1,27 +1,27 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Todo } from '../todo.model';
 import { TodoService } from '../todo.service';
+import { ToastrService } from 'ngx-toastr';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  // imports: [ModalComponent],
   styleUrls: ['./todo-list.component.css'],
 })
 export class TodoListComponent implements OnInit {
-  todos: Todo[]= [];
+  todos: Todo[] = [];
   selectedTodo: any | null = null;
-  deleteModalOpen: boolean = false
+  deleteModalOpen: boolean = false;
+  editModalOpen: boolean = false;
 
-  constructor(private todoService: TodoService) { }
+  constructor(private todoService: TodoService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
-    this.todoService.todos$.subscribe(todos => {
+    this.todoService.todos$.subscribe((todos) => {
       this.todos = todos;
     });
-    this.gettodos()
+    this.gettodos();
   }
 
   gettodos() {
@@ -38,47 +38,51 @@ export class TodoListComponent implements OnInit {
         index === i ? updatedTodo : todo
       );
     });
+    this.toastr.success('Completed!')
   }
 
   deleteTodo(id: number, i: number) {
-      this.todoService.deleteTodo(id).subscribe(() => {
-        this.todoService.deleteTodoFromLocalState(id);
-        this.todos = this.todos.filter(todo => todo.id !== id);
-        alert('Todo deleted');
-      });
-      this.deleteModalOpen = false
-    
+    this.todoService.deleteTodo(id).subscribe(() => {
+      this.todoService.deleteTodoFromLocalState(id);
+      this.todos = this.todos.filter((todo) => todo.id !== id);
+      this.toastr.success('Todo deleted');
+    });
+    this.deleteModalOpen = false;
   }
 
-  deleteConfirm(){
-    this.deleteModalOpen = true
+  deleteConfirm() {
+    this.deleteModalOpen = true;
   }
-
-  // toggleLoginFace() {
-  //   this.loginshow = true;
-  //   this.emailonlyshow = false;
-  // }
 
   deleteModalToggle(open: boolean) {
-    this.deleteModalOpen = open
+    this.deleteModalOpen = open;
+  }
+  editConfirm() {
+    this.editModalOpen = true;
   }
 
-  cancel(){
-    this.deleteModalOpen = false
+  editModalToggle(open: boolean) {
+    this.editModalOpen = open;
   }
 
+  cancel() {
+    this.deleteModalOpen = false;
+  }
 
   updateTodo(updatedTodo: Todo): void {
     this.todoService.updateTodo(updatedTodo).subscribe(() => {
       this.todoService.editTodoLocalState(updatedTodo);
-      this.todos = this.todos.map(todo =>
+      this.todos = this.todos.map((todo) =>
         todo.id === updatedTodo.id ? updatedTodo : todo
       );
       this.selectedTodo = null;
+      this.editModalOpen = false
+      this.toastr.success('Todo Saved');
     });
   }
 
   editTodo(todo: Todo): void {
     this.selectedTodo = { ...todo };
+    this.editConfirm()
   }
 }

@@ -10,6 +10,16 @@
   </div>
 
   <div class="logout_container">
-    <button (click)="logout()" class="deleteBtn">Logout</button>
+    <button (click)="logoutConfirm()" class="deleteBtn">Log Out</button>
   </div>
+
+  <app-modal [isOpen]="logoutModalOpen" (isClose)="logoutModalToggle(false)">
+    <div class="modal_confirm">
+      <h1>Are you sure You want to Logout?</h1>
+      <div class="actions_modal">
+        <button class='deleteBtn' (click)="logout()">Log Out</button>
+        <button class='cancelBtn' (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </app-modal>
 </div>

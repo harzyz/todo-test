@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,10 +10,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
+  paswordVisible: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -30,20 +33,23 @@ export class LoginComponent implements OnInit {
             result.password === this.loginForm.value.password
           );
         });
-        const token = Math.floor(Math.random() * 1000)
+        const token = Math.floor(Math.random() * 1000);
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
           localStorage.setItem('token', JSON.stringify(token));
-          alert('Login success!!');
+          this.toastr.success('Login success!!');
           this.loginForm.reset();
           this.router.navigate(['dashboard']);
         } else {
-          alert('user not found!!');
+          this.toastr.error('user not found!!');
         }
       },
       (err) => {
-        alert('something went wrong!!');
+        this.toastr.warning('something went wrong!!');
       }
     );
+  }
+  passwordVisible(visible: boolean) {
+    this.paswordVisible = visible;
   }
 }

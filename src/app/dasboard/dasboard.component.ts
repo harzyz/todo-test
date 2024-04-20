@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class DasboardComponent {
   userName = ''
+  logoutModalOpen: boolean = false;
+
 
   constructor(private router: Router) {}
 
@@ -24,5 +26,15 @@ export class DasboardComponent {
     this.router.navigate(['']);
   }
 
+  logoutConfirm() {
+    this.logoutModalOpen = true;
+  }
+
+  logoutModalToggle(open: boolean) {
+    this.logoutModalOpen = open;
+  }
   
+  cancel() {
+    this.logoutModalOpen = false;
+  }
 }

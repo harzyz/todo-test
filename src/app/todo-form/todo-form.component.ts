@@ -1,26 +1,28 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Todo } from '../todo.model';
 import { TodoService } from '../todo.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-todo-form',
   templateUrl: './todo-form.component.html',
-  styleUrls: ['./todo-form.component.css']
+  styleUrls: ['./todo-form.component.css'],
 })
 export class TodoFormComponent implements OnInit {
   todos: Todo[] = [];
-  newTodo: string = '' 
+  newTodo: string = '';
+  deleteModalOpen: boolean = false;
 
-  
-  constructor(private todoService: TodoService) {
-
-  }
+  constructor(
+    private todoService: TodoService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
-    this.todoService.todos$.subscribe(todos => {
+    this.todoService.todos$.subscribe((todos) => {
       this.todos = todos;
     });
-    this.gettodos()
+    this.gettodos();
   }
 
   gettodos() {
@@ -36,23 +38,31 @@ export class TodoFormComponent implements OnInit {
         completed: false,
       };
       this.todoService.addTodoToLocalState(todo);
-      this.todoService.addTodo(todo).subscribe((newTodo) => {
-      });
+      this.todoService.addTodo(todo).subscribe((newTodo) => {});
       this.newTodo = '';
     } else {
-      alert('Please Enter Todo');
+      this.toastr.warning('Please Enter Todo');
     }
   }
 
   deleteTodo(id: number, i: number) {
-    if(window.confirm('Are you sure you want to DELETE Todo?')){
-      this.todoService.deleteTodo(id).subscribe(() => {
-        this.todoService.deleteTodoFromLocalState(id);
-        this.todos = this.todos.filter(todo => todo.id !== id);
-        alert('Todo deleted');
-      });
-    }
+    this.todoService.deleteTodo(id).subscribe(() => {
+      this.todoService.deleteTodoFromLocalState(id);
+      this.todos = this.todos.filter((todo) => todo.id !== id);
+      this.toastr.success('Todo deleted');
+    });
+    this.deleteModalOpen = false;
   }
 
- 
+  deleteConfirm() {
+    this.deleteModalOpen = true;
+  }
+
+  deleteModalToggle(open: boolean) {
+    this.deleteModalOpen = open;
+  }
+
+  cancel() {
+    this.deleteModalOpen = false;
+  }
 }

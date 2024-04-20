@@ -1,110 +1,131 @@
-.wrapper{
+.wrapper {
   width: 100%;
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   gap: 30px;
-  background-color: #dedcff;
+  background-color: #fff;
   align-items: center;
 }
-.logo{
+.logo {
   display: flex;
   align-items: center;
   gap: 30px;
-  width: 100%;
+  width: 50%;
   justify-content: center;
 }
-.TodoLogo{
-  width: 100px;
-  height: 100px;
+.form_container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.TodoLogo {
+  width: 300px;
+  height: 300px;
   border-radius: 15px;
 }
-.TodoLogo img{
+.TodoLogo img {
   width: 100%;
   height: 100%;
   border-radius: 15px;
 }
-.container{
-  width: 30%;
+.container {
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
-.welcome{
+.welcome {
   font-size: 30px;
   font-weight: 500;
   text-align: center;
 }
-.actions{
-  font-size: 30px;
+.actions {
+  font-size: 50px;
   font-weight: 500;
   text-align: center;
-  color: #6AA3FF;
+  color: #6aa3ff;
   font-weight: 600;
+  width: 70%;
 }
-.container input{
+.visibility_icon {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+}
+.container input {
   width: 90%;
-  padding: 20px 16px ;
+  padding: 20px 16px;
   border: 2px solid grey;
+  height: 50px;
+  border-radius: 10px;
 }
-.passwordinput input{
+.passwordinput input {
   width: 100%;
 }
-.passwordinput{
+.passwordinput {
   width: 90%;
   display: flex;
   justify-content: center;
   position: relative;
 }
-.visible{
+.visible {
   position: absolute;
   right: 10px;
   top: 35%;
 }
-.container button{
+.container button {
   width: 90%;
-  padding: 16px 16px ;
-  background: #182d7c;
+  padding: 16px 16px;
+  background: #433bff;
   border: none;
-  color: #E5EBFA;
+  color: #e5ebfa;
   font-size: 18px;
-  font-family: 'Poppins';
+  font-family: "Poppins";
+  border-radius: 10px;
 }
-.link{
+.link {
   color: #070c27;
   font-weight: 700;
   text-decoration: none;
 }
-@media screen and (max-width: 700px){
-  .container{
-    width: 90%;
+@media screen and (max-width: 700px) {
+  .container {
+    width: 100%;
     gap: 15px;
   }
-  .wrapper{
+  .wrapper {
     min-height: 100vh;
     height: 100%;
     gap: 10px;
-    padding-top: 30px;
+    flex-direction: column;
   }
-  .actions{
-    font-size: 25px;
+  .form_container {
+    width: 100%;
+    align-items: center;
   }
   .logo{
+    width: 100%;
+  }
+  .actions {
+    font-size: 25px;
+  }
+  .logo {
     gap: 10px;
   }
-  .TodoLogo{
+  .TodoLogo {
     width: 100px;
     height: 100px;
   }
-  .welcome{
+  .welcome {
     font-size: 30px;
   }
-  .container input{
-    height: 40px
+  .container input {
+    height: 40px;
   }
-  .container button{
+  .container button {
     height: 40px;
     padding: 0;
   }

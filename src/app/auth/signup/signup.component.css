@@ -3,23 +3,27 @@
   height: 100vh;
   padding-top: 30px;
   display: flex;
-  flex-direction: column;
   gap: 30px;
   justify-content: center;
   align-items: center;
   background-color: #dedcff;
-
 }
-.logo{
+.logo {
   display: flex;
   align-items: center;
   gap: 30px;
-  width: 100%;
+  width: 50%;
   justify-content: center;
 }
-.TodoLogo{
-  width: 100px;
-  height: 100px;
+.form_container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.TodoLogo {
+  width: 300px;
+  height: 300px;
   border-radius: 15px;
 }
 .TodoLogo img{
@@ -28,7 +32,7 @@
   border-radius: 15px;
 }
 .container{
-  width: 30%;
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,6 +43,7 @@
   padding: 20px 16px ;
   border: 2px solid grey;
   height: 50px;
+  border-radius: 10px;
 }
 .passwordinput input{
   width: 100%;
@@ -58,12 +63,12 @@
 .container button{
   width: 90%;
   padding: 16px 16px ;
-  background: #182d7c;
+  background: #433bff;
   border: none;
   color: #E5EBFA;
   font-size: 18px;
   font-family: 'Poppins';
-  /* height: 40px; */
+  border-radius: 10px;
 }
 .link{
   color: #070c27;
@@ -76,15 +81,21 @@
   text-align: center;
 }
 .actions{
-  font-size: 30px;
+  font-size: 50px;
   font-weight: 500;
   text-align: center;
   color: #6AA3FF;
   font-weight: 600;
+  width: 70%;
+}
+.visibility_icon {
+  position: absolute;
+  top: 12px;
+  right: 10px;
 }
 @media screen and (max-width: 700px){
   .container{
-    width: 90%;
+    width: 100%;
     gap: 15px;
   }
   .actions{
@@ -98,6 +109,12 @@
     padding-top: 30px;
     gap: 10px;
     min-height: 100vh;
+    flex-direction: column;
+  }
+  .form_container {
+    width: 100%;
+    align-items: center;
+    gap: 20px;
   }
   .TodoLogo{
     width: 100px;

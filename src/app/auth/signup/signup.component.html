@@ -1,9 +1,10 @@
 <div class="wrapper">
-    <div class="logo">
-      <div class="TodoLogo">
-        <img src='../../../assets/images/signUpimga.png' />
-      </div>
+  <div class="logo">
+    <div class="TodoLogo">
+      <img src="../../../assets/images/option4.jpg" />
     </div>
+  </div>
+  <div class="form_container">
     <h1 class="actions">Sign Up</h1>
     <form [formGroup]="signupForm" (ngSubmit)="buttonFunc()" class="container">
       <input
@@ -12,30 +13,40 @@
         id="exampleInputfullname"
         formControlName="fullname"
       />
-      <input
-        type="email"
-        placeholder="Email"
-        formControlName="email"
-      />
+      <input type="email" placeholder="Email" formControlName="email" />
       <input
         type="text"
         placeholder="Mobile Number"
         formControlName="mobile"
-        id="exampleInputmobilenumber" 
+        id="exampleInputmobilenumber"
       />
       <div class="passwordinput">
         <input
-          type='password'
+          id="password"
           placeholder="Password"
           formControlName="password"
+          [type]="paswordVisible ? 'text' : 'password'"
         />
+        <i
+          (click)="passwordVisible(true)"
+          *ngIf="!paswordVisible"
+          style="color: grey; cursor: pointer"
+          class="material-icons visibility_icon"
+          >visibility</i
+        >
+        <i
+          (click)="passwordVisible(false)"
+          *ngIf="paswordVisible"
+          style="color: grey; cursor: pointer"
+          class="material-icons visibility_icon"
+          >visibility_off</i
+        >
       </div>
       <button type="submit">Sign up</button>
       <p>
         Already have an account?
-        <a class='link' href="/login">
-          Log in
-        </a>
+        <a class="link" href="/login"> Log in </a>
       </p>
     </form>
   </div>
+</div>
