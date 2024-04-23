@@ -22,37 +22,17 @@ export class SignupComponent implements OnInit {
     private route: ActivatedRoute,
     private toastr: ToastrService
   ) {}
-  editedUser: any;
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      if (params['editedUser']) {
-        this.editedUser = JSON.parse(params['editedUser'])``;
-        this.signupForm = this.formBuilder.group({
-          fullname: [this.editedUser.fullname],
-          email: [this.editedUser.email],
-          password: [this.editedUser.password],
-          mobile: [this.editedUser.mobile],
-        });
-      } else {
-        this.signupForm = this.formBuilder.group({
-          fullname: [''],
-          email: [''],
-          password: [''],
-          mobile: [''],
-        });
-      }
+    this.signupForm = this.formBuilder.group({
+      fullname: [''],
+      email: [''],
+      password: [''],
+      mobile: [''],
     });
   }
 
   passwordVisible(visible: boolean) {
     this.paswordVisible = visible;
-  }
-  buttonFunc() {
-    if (this.editedUser && this.editedUser.id) {
-      this.editUser();
-    } else {
-      this.signUp();
-    }
   }
 
   signUp() {
@@ -69,26 +49,6 @@ export class SignupComponent implements OnInit {
         },
         (err) => {
           this.toastr.error('something went wrong');
-        }
-      );
-  }
-  editUser() {
-    console.log('this.signupForm.value', this.signupForm.value);
-    console.log(this.editedUser.id);
-    this.http
-      .put<any>(
-        `http://localhost:4000/users/${this.editedUser.id}`,
-        this.signupForm.value
-      )
-      .subscribe(
-        (res) => {
-          debugger;
-          alert('User edited successfully');
-          this.signupForm.reset();
-          this.router.navigate(['/login']);
-        },
-        (err) => {
-          alert('something went wrong');
         }
       );
   }

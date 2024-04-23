@@ -42,6 +42,13 @@
       "email": "tobe@email.com",
       "password": "tobe",
       "mobile": "090887766554"
+    },
+    {
+      "id": "7bfc",
+      "fullname": "Bisi",
+      "email": "bisi@gmail.com",
+      "password": "bisi",
+      "mobile": "85858585858"
     }
   ]
 }

@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
           this.loginForm.reset();
           this.router.navigate(['dashboard']);
         } else {
-          this.toastr.error('user not found!!');
+          this.toastr.error('Incorrect Email or Password!!');
         }
       },
       (err) => {

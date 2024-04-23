@@ -37,9 +37,17 @@
 
       <li *ngIf='todo.completed' class="done_item">
         <span  [ngClass]="todo.completed ? 'doned' : 'title'">{{ todo.title }}</span>
-        <i style="color: red; cursor: pointer;" (click)="deleteTodo()" class="material-icons">delete</i>
+        <i style="color: red; cursor: pointer;" (click)="deleteConfirm(todo.id)" class="material-icons">delete</i>
       </li>
     </div>
   </ul>
-  
+  <app-modal [isOpen]="deleteModalOpen" (isClose)="deleteModalToggle(false)">
+    <div class="modal_confirm">
+      <h1>Are you sure You want to Delete?</h1>
+      <div class="actions_modal">
+        <button class='deleteBtn' (click)="deleteTodo()">Delete</button>
+        <button class='cancelBtn' (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </app-modal>
 </div>
