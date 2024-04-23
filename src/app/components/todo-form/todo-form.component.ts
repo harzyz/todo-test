@@ -70,4 +70,8 @@ export class TodoFormComponent implements OnInit {
   cancel() {
     this.deleteModalOpen = false;
   }
+  
+  noCompletedTodos(): boolean {
+    return this.todos.filter(todo => todo.completed).length === 0;
+  }
 }

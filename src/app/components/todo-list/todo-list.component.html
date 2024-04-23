@@ -1,7 +1,7 @@
 <div class="list_container">
   <h1 class="todoListName">Todo List</h1>
   <ul class="todo-list">
-    <div class="no_todos" *ngIf="todos.length == 0">No Todo's Yet</div>
+    <div class="no_todos" *ngIf="noIncompleteTodos()">No Todo's Yet</div>
     <div class="hold" *ngFor="let todo of todos let i = index; ">
       <li *ngIf='!todo.completed && todos.length > 0' class="todo-item" >
         <span [ngClass]="todo.completed ? 'doned' : 'title'">{{ todo.title }}</span>
@@ -32,7 +32,7 @@
 
   <ul class="todo_list_done">
     <h1 class="todoListName">Completed List</h1>
-    <div class='no_todos' *ngIf="todos.length == 0">No Completed Todo's yet</div>
+    <div class='no_todos' *ngIf="noCompletedTodos()">No Completed Todo's yet</div>
     <div *ngFor="let todo of todos let i = index;">
 
       <li *ngIf='todo.completed' class="done_item">

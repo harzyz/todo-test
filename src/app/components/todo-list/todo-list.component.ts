@@ -93,4 +93,12 @@ export class TodoListComponent implements OnInit {
     this.selectedTodo = { ...todo };
     this.editConfirm();
   }
+
+  noIncompleteTodos(): boolean {
+    return this.todos.length === 0 || this.todos.every(todo => todo.completed);
+  }
+  
+  noCompletedTodos(): boolean {
+    return this.todos.filter(todo => todo.completed).length === 0;
+  }
 }
