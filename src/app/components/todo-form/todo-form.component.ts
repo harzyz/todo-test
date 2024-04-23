@@ -12,6 +12,7 @@ export class TodoFormComponent implements OnInit {
   todos: Todo[] = [];
   newTodo: string = '';
   deleteModalOpen: boolean = false;
+  deleteId: number | null = null;
 
   constructor(
     private todoService: TodoService,
@@ -38,24 +39,28 @@ export class TodoFormComponent implements OnInit {
         completed: false,
       };
       this.todoService.addTodoToLocalState(todo);
-      this.todoService.addTodo(todo).subscribe((newTodo) => {});
+      this.todoService.addTodo(todo).subscribe();
       this.newTodo = '';
     } else {
       this.toastr.warning('Please Enter Todo');
     }
   }
 
-  deleteTodo(id: number, i: number) {
-    this.todoService.deleteTodo(id).subscribe(() => {
-      this.todoService.deleteTodoFromLocalState(id);
-      this.todos = this.todos.filter((todo) => todo.id !== id);
-      this.toastr.success('Todo deleted');
-    });
-    this.deleteModalOpen = false;
+  deleteTodo() {
+    if (this.deleteId !== null) {
+      this.todoService.deleteTodoFromLocalState(this.deleteId);
+      this.todoService.deleteTodo(this.deleteId).subscribe(() => {
+        this.todos = this.todos.filter((todo) => todo.id !== this.deleteId);
+        this.toastr.success('Todo deleted');
+      });
+      this.deleteModalOpen = false;
+      this.deleteId = null;
+    }
   }
 
-  deleteConfirm() {
+  deleteConfirm(id: number) {
     this.deleteModalOpen = true;
+    this.deleteId = id;
   }
 
   deleteModalToggle(open: boolean) {

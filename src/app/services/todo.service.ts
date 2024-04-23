@@ -54,7 +54,7 @@ export class TodoService {
     this.updateTodos(updatedTodos);
   }
 
-  deleteTodoFromLocalState(id: number): void {
+  deleteTodoFromLocalState(id: number | null): void {
     const currentTodos = this.todosSubject.getValue();
     const updatedTodos = currentTodos.filter(todo => todo.id !== id);
     this.updateTodos(updatedTodos);

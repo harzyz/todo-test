@@ -12,3 +12,15 @@ export const authGuard: CanActivateFn = (route, state) => {
     return false;
   }
 };
+
+export const guestGuard: CanActivateFn = (route, state) => {
+  const token = localStorage.getItem('token');
+  const router = inject(Router);
+  console.log('token', token);
+  if (!token) {
+    return true;
+  } else {
+    router.navigate(['/dashboard']);
+    return false;
+  }
+};

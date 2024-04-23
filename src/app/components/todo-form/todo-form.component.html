@@ -8,16 +8,16 @@
   <div *ngFor="let todo of todos let i = index;">
     <li *ngIf='todo.completed' class="todo-item">
       <span  [ngClass]="todo.completed ? 'doned' : 'title'">{{ todo.title }}</span>
-      <i style="color: red; cursor: pointer;" (click)="deleteTodo(todo.id, i)" class="material-icons">delete</i>
+      <i style="color: red; cursor: pointer;" (click)="deleteConfirm(todo.id)" class="material-icons">delete</i>
     </li>
-    <!-- <app-modal [isOpen]="deleteModalOpen" (isClose)="deleteModalToggle(false)">
+    <app-modal [isOpen]="deleteModalOpen" (isClose)="deleteModalToggle(false)">
       <div class="modal_confirm">
         <h1>Are you sure You want to Delete?</h1>
         <div class="actions_modal">
-          <button class='deleteBtn' (click)="deleteTodo(todo.id, i)">Delete</button>
+          <button class='deleteBtn' (click)="deleteTodo()">Delete</button>
           <button class='cancelBtn' (click)="cancel()">Cancel</button>
         </div>
       </div>
-    </app-modal> -->
+    </app-modal>
   </div>
 </ul>

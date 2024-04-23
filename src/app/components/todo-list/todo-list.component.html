@@ -2,20 +2,20 @@
   <h1 class="todoListName">Todo List</h1>
   <ul class="todo-list">
     <div class="no_todos" *ngIf="todos.length == 0">No Todo's Yet</div>
-    <div class="hold" *ngFor="let todo of todos let i = index;">
+    <div class="hold" *ngFor="let todo of todos let i = index; ">
       <li *ngIf='!todo.completed && todos.length > 0' class="todo-item" >
         <span [ngClass]="todo.completed ? 'doned' : 'title'">{{ todo.title }}</span>
         <div class="actions">
           <i style="color: blue; cursor: pointer;" (click)="editTodo(todo)" class="material-icons">edit</i>
           <i style="color: green; cursor: pointer; width: 20px;" (click)="done(i)" class="material-icons">checkmark</i>
-          <i style="color: red; cursor: pointer;" (click)="deleteConfirm()" class="material-icons">delete</i>
+          <i style="color: red; cursor: pointer;" (click)="deleteConfirm(todo.id)" class="material-icons">delete</i>
         </div>
       </li>
       <app-modal [isOpen]="deleteModalOpen" (isClose)="deleteModalToggle(false)">
         <div class="modal_confirm">
           <h1>Are you sure You want to Delete?</h1>
           <div class="actions_modal">
-            <button class='deleteBtn' (click)="deleteTodo(todo.id, i)">Delete</button>
+            <button class='deleteBtn' (click)="deleteTodo()">Delete</button>
             <button class='cancelBtn' (click)="cancel()">Cancel</button>
           </div>
         </div>
@@ -37,7 +37,7 @@
 
       <li *ngIf='todo.completed' class="done_item">
         <span  [ngClass]="todo.completed ? 'doned' : 'title'">{{ todo.title }}</span>
-        <i style="color: red; cursor: pointer;" (click)="deleteTodo(todo.id, i)" class="material-icons">delete</i>
+        <i style="color: red; cursor: pointer;" (click)="deleteTodo()" class="material-icons">delete</i>
       </li>
     </div>
   </ul>

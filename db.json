@@ -35,6 +35,13 @@
       "email": "kb@gmail.com",
       "password": "goat",
       "mobile": "09088877666"
+    },
+    {
+      "id": "9b93",
+      "fullname": "TobeChukwu",
+      "email": "tobe@email.com",
+      "password": "tobe",
+      "mobile": "090887766554"
     }
   ]
 }

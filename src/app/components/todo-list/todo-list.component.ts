@@ -13,6 +13,7 @@ export class TodoListComponent implements OnInit {
   selectedTodo: any | null = null;
   deleteModalOpen: boolean = false;
   editModalOpen: boolean = false;
+  deleteId: number | null = null;
 
   constructor(
     private todoService: TodoService,
@@ -23,7 +24,8 @@ export class TodoListComponent implements OnInit {
     this.todoService.todos$.subscribe((todos) => {
       this.todos = todos;
     });
-    this.gettodos();
+    
+    // this.gettodos();
   }
 
   gettodos() {
@@ -34,8 +36,8 @@ export class TodoListComponent implements OnInit {
 
   done(i: number) {
     const updatedTodo = { ...this.todos[i], completed: true };
+    this.todoService.editTodoLocalState(updatedTodo);
     this.todoService.updateTodo(updatedTodo).subscribe(() => {
-      this.todoService.editTodoLocalState(updatedTodo);
       this.todos = this.todos.map((todo, index) =>
         index === i ? updatedTodo : todo
       );
@@ -43,17 +45,21 @@ export class TodoListComponent implements OnInit {
     this.toastr.success('Completed!');
   }
 
-  deleteTodo(id: number, i: number) {
-    this.todoService.deleteTodo(id).subscribe(() => {
-      this.todoService.deleteTodoFromLocalState(id);
-      this.todos = this.todos.filter((todo) => todo.id !== id);
-      this.toastr.success('Todo deleted');
-    });
-    this.deleteModalOpen = false;
+  deleteTodo() {
+    if (this.deleteId !== null) {
+      this.todoService.deleteTodoFromLocalState(this.deleteId);
+      this.todoService.deleteTodo(this.deleteId).subscribe(() => {
+        this.todos = this.todos.filter((todo) => todo.id !== this.deleteId);
+        this.toastr.success('Todo deleted');
+      });
+      this.deleteModalOpen = false;
+      this.deleteId = null;
+    }
   }
 
-  deleteConfirm() {
+  deleteConfirm(id: number) {
     this.deleteModalOpen = true;
+    this.deleteId = id;
   }
 
   deleteModalToggle(open: boolean) {
@@ -72,8 +78,8 @@ export class TodoListComponent implements OnInit {
   }
 
   updateTodo(updatedTodo: Todo): void {
+    this.todoService.editTodoLocalState(updatedTodo);
     this.todoService.updateTodo(updatedTodo).subscribe(() => {
-      this.todoService.editTodoLocalState(updatedTodo);
       this.todos = this.todos.map((todo) =>
         todo.id === updatedTodo.id ? updatedTodo : todo
       );
